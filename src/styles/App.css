@@ -1,0 +1,10 @@
+.App {
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: background 2000ms ease;
+}

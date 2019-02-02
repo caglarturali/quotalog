@@ -36,7 +36,7 @@ class App extends Component {
   getRandomBGColor = () => {
     const rgb = [];
     for (let i = 0; i < 3; i++) {
-      rgb.push(Math.floor(Math.random() * 255));
+      rgb.push(Math.floor(Math.random() * (192 - 64) + 64));
     }
     return rgb;
   };
@@ -52,7 +52,11 @@ class App extends Component {
 
     return (
       <div className="App" style={styles}>
-        {quote ? <QuoteBox quote={quote} getNewQuote={this.getRandomQuote} /> : <span>Loading...</span>}
+        {quote ? (
+          <QuoteBox quote={quote} getNewQuote={this.getRandomQuote} color={bgColorStr} />
+        ) : (
+          <span>Loading...</span>
+        )}
       </div>
     );
   }

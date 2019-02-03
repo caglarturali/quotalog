@@ -36,7 +36,7 @@ export default class QuoteBox extends Component {
     };
 
     const buttonBoxStyle = {
-      borderTop: `1px dashed ${color}`
+      borderTopColor: `${color}`
     };
 
     if (!text || !author) {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import quotes from '../shared/quotes.json';
 import QuoteBox from './QuoteBox';
+import GitHubButton from './GitHubButton.js';
 
 export default class Main extends Component {
   state = {
@@ -32,7 +33,7 @@ export default class Main extends Component {
     this.setState({ randomQuote: quote });
   };
 
-  getRandomBGColor = () => {
+  getRandomColor = () => {
     const rgb = [];
     for (let i = 0; i < 3; i++) {
       rgb.push(Math.floor(Math.random() * (192 - 64) + 64));
@@ -43,7 +44,7 @@ export default class Main extends Component {
   render() {
     const { randomQuote } = this.state;
 
-    const bgColor = this.getRandomBGColor();
+    const bgColor = this.getRandomColor();
     const bgColorStr = `rgb(${bgColor[0]}, ${bgColor[1]}, ${bgColor[2]})`;
     let styles = {
       background: bgColorStr
@@ -52,6 +53,7 @@ export default class Main extends Component {
     return (
       <div className="App" style={styles}>
         <QuoteBox quote={randomQuote} getNewQuote={this.getRandomQuote} color={bgColorStr} />
+        <GitHubButton />
       </div>
     );
   }

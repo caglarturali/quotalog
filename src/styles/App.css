@@ -33,6 +33,7 @@
   font-family: 'Raleway';
   font-size: 2em;
   font-weight: 500;
+  padding: 0 10px;
   text-align: center;
   transition: opacity 1000ms ease;
 }
@@ -48,13 +49,13 @@
 .fa-quote-left {
   float: left;
   margin-bottom: 10px;
-  margin-right: 10px;
+  transition: opacity 1000ms ease;
 }
 
 .fa-quote-right {
   float: right;
-  margin-left: 10px;
   margin-top: 10px;
+  transition: opacity 1000ms ease;
 }
 
 .buttons {

@@ -5,19 +5,19 @@ import TranslateButton from './TranslateButton';
 
 export default class QuoteBox extends Component {
   state = {
-    textClasses: ''
+    toggleClasses: ''
   };
 
   componentWillReceiveProps = () => {
     setTimeout(() => {
       this.setState({
-        textClasses: 'show'
+        toggleClasses: 'show'
       });
     }, 100);
   };
 
   handleNewQuoteClick = () => {
-    this.setState({ textClasses: 'hide' });
+    this.setState({ toggleClasses: 'hide' });
     setTimeout(() => {
       this.props.getNewQuote();
     }, 1000);
@@ -45,14 +45,18 @@ export default class QuoteBox extends Component {
 
     return (
       <div id="quote-box" style={colorStyles}>
-        <span id="text" className={this.state.textClasses}>
-          <FontAwesomeIcon icon="quote-left" />
-          <br />
-          {text}
-          <br />
-          <FontAwesomeIcon icon="quote-right" />
-        </span>
-        <span id="author" className={this.state.textClasses}>
+        <div>
+          <div>
+            <FontAwesomeIcon icon="quote-left" size="lg" className={this.state.toggleClasses} />
+          </div>
+          <span id="text" className={this.state.toggleClasses}>
+            {text}
+          </span>
+          <div>
+            <FontAwesomeIcon icon="quote-right" size="lg" className={this.state.toggleClasses} />
+          </div>
+        </div>
+        <span id="author" className={this.state.toggleClasses}>
           {author}
         </span>
         <div className="buttons" style={buttonBoxStyle}>

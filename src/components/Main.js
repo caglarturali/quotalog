@@ -38,21 +38,20 @@ export default class Main extends Component {
     for (let i = 0; i < 3; i++) {
       rgb.push(Math.floor(Math.random() * (192 - 64) + 64));
     }
-    return rgb;
+    return `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
   };
 
   render() {
     const { randomQuote } = this.state;
 
     const bgColor = this.getRandomColor();
-    const bgColorStr = `rgb(${bgColor[0]}, ${bgColor[1]}, ${bgColor[2]})`;
     let styles = {
-      background: bgColorStr
+      background: bgColor
     };
 
     return (
       <div className="App" style={styles}>
-        <QuoteBox quote={randomQuote} getNewQuote={this.getRandomQuote} color={bgColorStr} />
+        <QuoteBox quote={randomQuote} getNewQuote={this.getRandomQuote} color={bgColor} />
         <GitHubButton />
       </div>
     );

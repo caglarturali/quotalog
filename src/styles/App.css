@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
+
 .App {
   align-items: center;
   display: flex;
@@ -27,24 +29,19 @@
 }
 
 #text {
+  font-family: 'Raleway';
   font-size: 2em;
-  opacity: 0;
+  font-weight: 500;
   text-align: center;
   transition: opacity 1000ms ease;
 }
 
-#text.show {
-  opacity: 1;
-}
-
-#text.hide {
-  opacity: 0;
-}
-
 #author {
-  font-size: 1.25em;
+  font-family: 'Raleway';
+  font-size: 1.1em;
   font-weight: 400;
-  padding: 10px;
+  padding: 20px 0;
+  transition: opacity 1000ms ease;
 }
 
 .fa-quote-left {
@@ -57,4 +54,48 @@
   float: right;
   margin-left: 10px;
   margin-top: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  width: 100%;
+}
+
+.button {
+  margin-left: 10px;
+  transition: color 1000ms ease;
+}
+
+.new-quote-btn {
+  border: 0;
+  border-radius: 2px;
+  color: ghostwhite;
+  cursor: pointer;
+  padding: 8px 10px;
+  transition: background 1000ms ease;
+}
+
+.button:hover,
+.new-quote-btn:hover {
+  opacity: 0.85;
+}
+
+.left {
+  align-items: center;
+  display: flex;
+}
+
+.right {
+  align-items: center;
+  display: flex;
+}
+
+.show {
+  opacity: 1;
+}
+
+.hide {
+  opacity: 0;
 }

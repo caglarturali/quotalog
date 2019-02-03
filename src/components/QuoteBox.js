@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-
-const tweet_base_url = 'https://twitter.com/intent/tweet?hashtags=quotes,fCC&related=freecodecamp&text=';
-const translate_base_url = 'https://translate.google.com/#view=home&op=translate&sl=en&tl=tr&text=';
+import TweetButton from './TweetButton';
+import TranslateButton from './TranslateButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class QuoteBox extends Component {
   state = {
@@ -31,22 +31,26 @@ export default class QuoteBox extends Component {
       color: color
     };
 
+    if (!text || !author) {
+      return <FontAwesomeIcon icon="spinner" pulse style={{ color: 'white' }} size="2x" />;
+    }
+
     return (
       <div id="quote-box" style={styles}>
         <span id="text" className={this.state.textClasses}>
+          <FontAwesomeIcon icon="quote-left" />
+          <br />
           {text}
+          <br />
+          <FontAwesomeIcon icon="quote-right" />
         </span>
         <span id="author">{author}</span>
         <div className="buttons">
           <button id="new-quote" onClick={this.handleNewQuoteClick}>
             New Quote
           </button>
-          <a id="tweet-quote" href={`${tweet_base_url}${text} ${author}`} target="_blank" rel="noopener noreferrer">
-            Tweet Quote
-          </a>
-          <a id="tweet-quote" href={`${translate_base_url}${text}`} target="_blank" rel="noopener noreferrer">
-            Translate Quote
-          </a>
+          <TweetButton quote={this.props.quote} />
+          <TranslateButton quote={this.props.quote} />
         </div>
       </div>
     );

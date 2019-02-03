@@ -1,64 +1,15 @@
 import React, { Component } from 'react';
 import './styles/App.css';
-import quotes from './shared/quotes.json';
-import QuoteBox from './components/QuoteBox';
+import Main from './components/Main';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { faLanguage, faQuoteLeft, faQuoteRight, faSpinner } from '@fortawesome/free-solid-svg-icons';
+
+library.add(fab, faLanguage, faQuoteLeft, faQuoteRight, faSpinner);
 
 class App extends Component {
-  state = {
-    quotes: [],
-    randomQuote: {}
-  };
-
-  componentDidMount = () => {
-    this.loadQuotes();
-  };
-
-  loadQuotes = () => {
-    this.setState(
-      {
-        quotes
-      },
-      () => {
-        this.getRandomQuote();
-      }
-    );
-  };
-
-  getRandomQuote = () => {
-    const randomQuoteArr = this.state.quotes[Math.floor(Math.random() * this.state.quotes.length)];
-    const quote = {
-      text: randomQuoteArr[0],
-      author: randomQuoteArr[1]
-    };
-    this.setState({ randomQuote: quote });
-  };
-
-  getRandomBGColor = () => {
-    const rgb = [];
-    for (let i = 0; i < 3; i++) {
-      rgb.push(Math.floor(Math.random() * (192 - 64) + 64));
-    }
-    return rgb;
-  };
-
   render() {
-    const { randomQuote: quote } = this.state;
-
-    const bgColor = this.getRandomBGColor();
-    const bgColorStr = `rgb(${bgColor[0]}, ${bgColor[1]}, ${bgColor[2]})`;
-    let styles = {
-      background: bgColorStr
-    };
-
-    return (
-      <div className="App" style={styles}>
-        {quote ? (
-          <QuoteBox quote={quote} getNewQuote={this.getRandomQuote} color={bgColorStr} />
-        ) : (
-          <span>Loading...</span>
-        )}
-      </div>
-    );
+    return <Main />;
   }
 }
 

@@ -51,7 +51,7 @@ export default class Main extends Component {
 
     return (
       <div className="App" style={styles}>
-        <QuoteBox quote={randomQuote} getNewQuote={this.getRandomQuote} color={bgColor} />
+        <QuoteBox quote={randomQuote} getRandomQuote={this.getRandomQuote} color={bgColor} />
         <GitHubButton />
       </div>
     );

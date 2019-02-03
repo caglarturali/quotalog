@@ -9,6 +9,7 @@ export default class QuoteBox extends Component {
   };
 
   componentWillReceiveProps = () => {
+    this.setState({ toggleClasses: 'hide' });
     setTimeout(() => {
       this.setState({
         toggleClasses: 'show'
@@ -19,7 +20,7 @@ export default class QuoteBox extends Component {
   handleNewQuoteClick = () => {
     this.setState({ toggleClasses: 'hide' });
     setTimeout(() => {
-      this.props.getNewQuote();
+      this.props.getRandomQuote();
     }, 1000);
   };
 

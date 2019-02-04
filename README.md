@@ -47,3 +47,7 @@ This is a Random Quote Machine built for [one of the](https://learn.freecodecamp
 ### Deploying the app
 
 - After building the project, deploy the files inside the newly created `build` dir to your server/container/whatever, or use a service like [Netlify](netlify.com) to take advantage of the automatic build/deploy process.
+
+### About the quote data
+
+- I'm using [jsdelivr](https://www.jsdelivr.com/) to load the quote data from the same repository as the app itself. :blush: If you need an API like endpoint for your own project, you can access it [here](https://cdn.jsdelivr.net/gh/caglarturali/quotalog@master/src/shared/quotes.json).

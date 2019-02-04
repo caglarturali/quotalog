@@ -41,7 +41,7 @@ This is a Random Quote Machine built for [one of the](https://learn.freecodecamp
   ```
   `or`
   ```bash
-  npm build
+  npm run build
   ```
 
 ### Deploying the app

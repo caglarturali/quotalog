@@ -3,7 +3,7 @@ import QuoteBox from './QuoteBox';
 import GitHubButton from './GitHubButton.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const quotesUrl = 'https://cdn.jsdelivr.net/gh/caglarturali/quotalog/src/shared/quotes.json';
+const quotesUrl = 'https://cdn.jsdelivr.net/gh/caglarturali/quotalog@master/src/shared/quotes.json';
 
 export default class Main extends Component {
   state = {

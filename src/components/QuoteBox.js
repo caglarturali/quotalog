@@ -40,10 +40,6 @@ export default class QuoteBox extends Component {
       borderTopColor: `${color}`
     };
 
-    if (!text || !author) {
-      return <FontAwesomeIcon icon="spinner" pulse style={{ color: 'white' }} size="2x" />;
-    }
-
     return (
       <div id="quote-box" style={colorStyles}>
         <div>

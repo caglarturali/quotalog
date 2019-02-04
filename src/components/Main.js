@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import quotes from '../shared/quotes.json';
 import QuoteBox from './QuoteBox';
 import GitHubButton from './GitHubButton.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+const quotesUrl = 'https://cdn.jsdelivr.net/gh/caglarturali/quotalog/src/shared/quotes.json';
 
 export default class Main extends Component {
   state = {
@@ -14,23 +16,38 @@ export default class Main extends Component {
   };
 
   loadQuotes = () => {
-    this.setState(
-      {
-        quotes
-      },
-      () => {
-        this.getRandomQuote();
-      }
-    );
+    fetch(quotesUrl)
+      .then(res => res.json())
+      .then(res => {
+        if (res.quotes) {
+          this.setState(
+            {
+              quotes: res.quotes
+            },
+            () => {
+              this.getRandomQuote();
+            }
+          );
+        } else {
+          throw new Error();
+        }
+      })
+      .catch(() => {
+        // Use the local copy of the file.
+        this.setState(
+          {
+            quotes: require('../shared/quotes.json').quotes
+          },
+          () => {
+            this.getRandomQuote();
+          }
+        );
+      });
   };
 
   getRandomQuote = () => {
-    const randomQuoteArr = this.state.quotes[Math.floor(Math.random() * this.state.quotes.length)];
-    const quote = {
-      text: randomQuoteArr[0],
-      author: randomQuoteArr[1]
-    };
-    this.setState({ randomQuote: quote });
+    const randomQuote = this.state.quotes[Math.floor(Math.random() * this.state.quotes.length)];
+    this.setState({ randomQuote });
   };
 
   getRandomColor = () => {
@@ -51,8 +68,14 @@ export default class Main extends Component {
 
     return (
       <div className="App" style={styles}>
-        <QuoteBox quote={randomQuote} getRandomQuote={this.getRandomQuote} color={bgColor} />
-        <GitHubButton />
+        {randomQuote.text && randomQuote.author ? (
+          <React.Fragment>
+            <QuoteBox quote={randomQuote} getRandomQuote={this.getRandomQuote} color={bgColor} />
+            <GitHubButton />
+          </React.Fragment>
+        ) : (
+          <FontAwesomeIcon icon="spinner" pulse style={{ color: 'white' }} size="2x" />
+        )}
       </div>
     );
   }

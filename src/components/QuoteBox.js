@@ -5,20 +5,19 @@ import TranslateButton from './TranslateButton';
 
 export default class QuoteBox extends Component {
   state = {
-    toggleClasses: ''
+    textClass: 'show'
   };
 
-  componentWillReceiveProps = () => {
-    this.setState({ toggleClasses: 'hide' });
-    setTimeout(() => {
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.textClass !== 'show') {
       this.setState({
-        toggleClasses: 'show'
+        textClass: 'show'
       });
-    }, 100);
+    }
   };
 
   handleNewQuoteClick = () => {
-    this.setState({ toggleClasses: 'hide' });
+    this.setState({ textClass: 'hide' });
     setTimeout(() => {
       this.props.getRandomQuote();
     }, 1000);
@@ -27,6 +26,7 @@ export default class QuoteBox extends Component {
   render() {
     const { text, author } = this.props.quote;
     const { color } = this.props;
+    const { textClass } = this.state;
 
     const colorStyles = {
       color: color
@@ -44,16 +44,16 @@ export default class QuoteBox extends Component {
       <div id="quote-box" style={colorStyles}>
         <div>
           <div>
-            <FontAwesomeIcon icon="quote-left" size="lg" className={this.state.toggleClasses} />
+            <FontAwesomeIcon icon="quote-left" size="lg" className={textClass} />
           </div>
-          <span id="text" className={this.state.toggleClasses}>
+          <span id="text" className={textClass}>
             {text}
           </span>
           <div>
-            <FontAwesomeIcon icon="quote-right" size="lg" className={this.state.toggleClasses} />
+            <FontAwesomeIcon icon="quote-right" size="lg" className={textClass} />
           </div>
         </div>
-        <span id="author" className={this.state.toggleClasses}>
+        <span id="author" className={textClass}>
           {author}
         </span>
         <div className="buttons" style={buttonBoxStyle}>

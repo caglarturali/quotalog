@@ -68,8 +68,8 @@ export default class QuoteBox extends Component {
             </button>
           </div>
           <div className="right">
-            <TweetButton quote={this.props.quote} customStyle={colorStyles} />
-            <TranslateButton quote={this.props.quote} customStyle={colorStyles} />
+            <TweetButton quote={this.props.quote} color={color} />
+            <TranslateButton quote={this.props.quote} color={color} />
           </div>
         </div>
       </div>

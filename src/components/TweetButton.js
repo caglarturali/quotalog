@@ -5,7 +5,11 @@ const tweet_base_url = 'https://twitter.com/intent/tweet?hashtags=quotes,fCC&rel
 
 const TweetButton = props => {
   const { text, author } = props.quote;
-  const { customStyle } = props;
+  const { color } = props;
+
+  const btnStyle = {
+    background: color
+  };
 
   return (
     <a
@@ -15,9 +19,9 @@ const TweetButton = props => {
       href={`${tweet_base_url}${text} ${author}`}
       target="_blank"
       rel="noopener noreferrer"
-      style={customStyle}
+      style={btnStyle}
     >
-      <FontAwesomeIcon icon={['fab', 'twitter-square']} size="2x" />
+      <FontAwesomeIcon icon={['fab', 'twitter']} size="lg" />
     </a>
   );
 };

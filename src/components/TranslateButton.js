@@ -19,7 +19,11 @@ const buildTranslateUrl = text => {
 
 const TranslateButton = props => {
   const { text } = props.quote;
-  const { customStyle } = props;
+  const { color } = props;
+
+  const btnStyle = {
+    background: color
+  };
 
   return (
     <a
@@ -28,9 +32,9 @@ const TranslateButton = props => {
       href={`${buildTranslateUrl(text)}`}
       target="_blank"
       rel="noopener noreferrer"
-      style={customStyle}
+      style={btnStyle}
     >
-      <FontAwesomeIcon icon="language" size="3x" />
+      <FontAwesomeIcon icon={['fab', 'google']} size="lg" />
     </a>
   );
 };

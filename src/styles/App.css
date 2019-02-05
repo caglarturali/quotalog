@@ -70,7 +70,7 @@
   color: ghostwhite;
   margin-left: 6px;
   padding: 6px;
-  transition: color 1000ms ease;
+  transition: background 1000ms ease;
 }
 
 .new-quote-btn {

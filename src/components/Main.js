@@ -46,8 +46,22 @@ export default class Main extends Component {
   };
 
   getRandomQuote = () => {
-    const randomQuote = this.state.quotes[Math.floor(Math.random() * this.state.quotes.length)];
-    this.setState({ randomQuote });
+    const { quotes } = this.state;
+    if (quotes.length === 0) {
+      // Start over.
+      return this.loadQuotes();
+    }
+
+    const randomQuoteIndex = Math.floor(Math.random() * quotes.length);
+    const randomQuote = quotes[randomQuoteIndex];
+
+    // Save random quote in state and remove it from the quotes array.
+    this.setState(prevState => ({
+      randomQuote,
+      quotes: prevState.quotes.filter(quote => {
+        return quote.text !== randomQuote.text && quote.author !== randomQuote.author;
+      })
+    }));
   };
 
   getRandomColor = () => {

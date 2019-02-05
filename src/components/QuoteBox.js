@@ -5,19 +5,28 @@ import TranslateButton from './TranslateButton';
 
 export default class QuoteBox extends Component {
   state = {
-    textClass: 'show'
+    textClass: 'show',
+    transitionInProgress: false
   };
 
   componentDidUpdate = (prevProps, prevState) => {
     if (prevState.textClass !== 'show') {
       this.setState({
-        textClass: 'show'
+        textClass: 'show',
+        transitionInProgress: false
       });
     }
   };
 
   handleNewQuoteClick = () => {
-    this.setState({ textClass: 'hide' });
+    if (this.state.transitionInProgress) {
+      return;
+    }
+
+    this.setState({
+      textClass: 'hide',
+      transitionInProgress: true
+    });
     setTimeout(() => {
       this.props.getRandomQuote();
     }, 1000);
@@ -26,7 +35,7 @@ export default class QuoteBox extends Component {
   render() {
     const { text, author } = this.props.quote;
     const { color } = this.props;
-    const { textClass } = this.state;
+    const { textClass, transitionInProgress } = this.state;
 
     const colorStyles = {
       color: color
@@ -63,6 +72,7 @@ export default class QuoteBox extends Component {
               className="new-quote-btn"
               style={newQuoteBtnStyle}
               onClick={this.handleNewQuoteClick}
+              disabled={transitionInProgress}
             >
               New Quote
             </button>

@@ -82,6 +82,10 @@
   transition: background 1000ms ease;
 }
 
+.new-quote-btn[disabled] {
+  cursor: wait;
+}
+
 .button:hover,
 .new-quote-btn:hover {
   opacity: 0.85;

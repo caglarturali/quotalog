@@ -7,8 +7,7 @@ const initialState = {
   isLoading: true,
   errMsg: null,
   quotes: [],
-  randomQuote: {},
-  randomQuotesShown: []
+  randomQuote: {}
 };
 
 export const Quotes = (state = initialState, action) => {
@@ -35,21 +34,17 @@ export const Quotes = (state = initialState, action) => {
       };
 
     case ActionTypes.GET_RANDOM_QUOTE:
-      let randomQuoteIndex = Math.floor(Math.random() * state.quotes.length);
-
-      let shouldReset = state.quotes.length === state.randomQuotesShown.length;
-      if (!shouldReset) {
-        while (state.randomQuotesShown.includes(randomQuoteIndex)) {
-          randomQuoteIndex = Math.floor(Math.random() * state.quotes.length);
-        }
-      }
+      const randomQuoteIndex = Math.floor(Math.random() * state.quotes.length);
       const randomQuote = state.quotes[randomQuoteIndex];
-      const randomQuotesShown = shouldReset ? [randomQuoteIndex] : [...state.randomQuotesShown, randomQuoteIndex];
+
+      const quotes = state.quotes.filter(quote => {
+        return quote.author !== randomQuote.author && quote.text !== randomQuote.text;
+      });
 
       return {
         ...state,
         randomQuote,
-        randomQuotesShown
+        quotes
       };
 
     default:

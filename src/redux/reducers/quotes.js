@@ -41,7 +41,7 @@ export const Quotes = (state = initialState, action) => {
 
       let randomQuote, quotesToChooseFrom;
       if (shouldReset) {
-        // Select from all available quotes.
+        // Choose from all available quotes.
         let randomQuoteIndex = Math.floor(Math.random() * state.quotes.length);
         randomQuote = state.quotes[randomQuoteIndex];
 

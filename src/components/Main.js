@@ -12,13 +12,6 @@ class Main extends Component {
     this.props.fetchQuotes();
   };
 
-  componentDidUpdate = () => {
-    if (this.props.quotes.length === 0) {
-      // Start over.
-      this.props.fetchQuotes();
-    }
-  };
-
   render() {
     const { isLoading, randomColor } = this.props;
 

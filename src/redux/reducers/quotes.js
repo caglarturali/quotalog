@@ -49,7 +49,7 @@ export const Quotes = (state = initialState, action) => {
           return quote.author !== randomQuote.author && quote.text !== randomQuote.text;
         });
       } else {
-        // Chooses from quotesToChooseFrom array.
+        // Choose from quotesToChooseFrom array.
         let randomQuoteIndex = Math.floor(Math.random() * state.quotesToChooseFrom.length);
         randomQuote = state.quotesToChooseFrom[randomQuoteIndex];
 

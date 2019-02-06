@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TweetButton from './TweetButton';
 import TranslateButton from './TranslateButton';
+import { connect } from 'react-redux';
+import { getRandomQuote } from '../redux/actions/quotes';
 
-export default class QuoteBox extends Component {
+class QuoteBox extends Component {
   state = {
     textClass: 'show',
     transitionInProgress: false
@@ -33,7 +35,7 @@ export default class QuoteBox extends Component {
   };
 
   render() {
-    const { text, author } = this.props.quote;
+    const { text, author } = this.props.randomQuote;
     const { color } = this.props;
     const { textClass, transitionInProgress } = this.state;
 
@@ -78,11 +80,28 @@ export default class QuoteBox extends Component {
             </button>
           </div>
           <div className="right">
-            <TweetButton quote={this.props.quote} color={color} />
-            <TranslateButton quote={this.props.quote} color={color} />
+            <TweetButton quote={this.props.randomQuote} color={color} />
+            <TranslateButton quote={this.props.randomQuote} color={color} />
           </div>
         </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  isLoading: state.isLoading,
+  errMsg: state.errMsg,
+  randomQuote: state.randomQuote
+});
+
+const mapDispatchToProps = dispatch => ({
+  getRandomQuote: () => {
+    dispatch(getRandomQuote());
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(QuoteBox);

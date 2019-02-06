@@ -2,3 +2,5 @@ export const ADD_QUOTES = 'ADD_QUOTES';
 export const QUOTES_LOADING = 'QUOTES_LOADING';
 export const QUOTES_FAILED = 'QUOTES_FAILED';
 export const GET_RANDOM_QUOTE = 'GET_RANDOM_QUOTE';
+
+export const GET_RANDOM_COLOR = 'GET_RANDOM_COLOR';

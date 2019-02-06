@@ -4,6 +4,7 @@ import TweetButton from './TweetButton';
 import TranslateButton from './TranslateButton';
 import { connect } from 'react-redux';
 import { getRandomQuote } from '../redux/actions/quotes';
+import { getRandomColor } from '../redux/actions/colors';
 
 class QuoteBox extends Component {
   state = {
@@ -31,24 +32,25 @@ class QuoteBox extends Component {
     });
     setTimeout(() => {
       this.props.getRandomQuote();
+      this.props.getRandomColor();
     }, 1000);
   };
 
   render() {
     const { text, author } = this.props.randomQuote;
-    const { color } = this.props;
+    const { randomColor } = this.props;
     const { textClass, transitionInProgress } = this.state;
 
     const colorStyles = {
-      color: color
+      color: randomColor
     };
 
     const newQuoteBtnStyle = {
-      background: color
+      background: randomColor
     };
 
     const buttonBoxStyle = {
-      borderTopColor: `${color}`
+      borderTopColor: `${randomColor}`
     };
 
     return (
@@ -80,8 +82,8 @@ class QuoteBox extends Component {
             </button>
           </div>
           <div className="right">
-            <TweetButton quote={this.props.randomQuote} color={color} />
-            <TranslateButton quote={this.props.randomQuote} color={color} />
+            <TweetButton quote={this.props.randomQuote} color={randomColor} />
+            <TranslateButton quote={this.props.randomQuote} color={randomColor} />
           </div>
         </div>
       </div>
@@ -90,14 +92,18 @@ class QuoteBox extends Component {
 }
 
 const mapStateToProps = state => ({
-  isLoading: state.isLoading,
-  errMsg: state.errMsg,
-  randomQuote: state.randomQuote
+  isLoading: state.quotes.isLoading,
+  errMsg: state.quotes.errMsg,
+  randomQuote: state.quotes.randomQuote,
+  randomColor: state.colors.randomColor
 });
 
 const mapDispatchToProps = dispatch => ({
   getRandomQuote: () => {
     dispatch(getRandomQuote());
+  },
+  getRandomColor: () => {
+    dispatch(getRandomColor());
   }
 });
 

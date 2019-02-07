@@ -9,7 +9,7 @@
   padding: 0;
   width: 100vw;
   height: 100vh;
-  transition: background 2000ms ease;
+  transition: background 1500ms ease;
 }
 
 #quote-box {
@@ -22,7 +22,6 @@
   width: 480px;
   margin: 20px;
   padding: 30px 50px;
-  transition: height 500ms ease;
 }
 
 #quote-box span {
@@ -42,19 +41,18 @@
   font-size: 1.1em;
   font-weight: 400;
   padding: 20px 0;
-  transition: opacity 1000ms ease;
+  text-align: center;
+  width: 100%;
 }
 
 .fa-quote-left {
   float: left;
   margin-bottom: 10px;
-  transition: opacity 1000ms ease;
 }
 
 .fa-quote-right {
   float: right;
   margin-top: 10px;
-  transition: opacity 1000ms ease;
 }
 
 .buttons {
@@ -106,14 +104,6 @@
   display: flex;
 }
 
-.show {
-  animation: fade-in 1s ease;
-}
-
-.hide {
-  animation: fade-out 1s ease;
-}
-
 .gh-button {
   color: ghostwhite;
   margin-top: 20px;
@@ -122,22 +112,4 @@
 
 .gh-button:hover {
   opacity: 1;
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-out {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import QuoteBox from './QuoteBox';
 import GitHubButton from './GitHubButton.js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Loading from './Loading';
 import { connect } from 'react-redux';
 import { fetchQuotes } from '../redux/actions/quotes';
 import { getRandomColor } from '../redux/actions/colors';
@@ -22,7 +22,7 @@ class Main extends Component {
     return (
       <div className="App" style={styles}>
         {isLoading ? (
-          <FontAwesomeIcon icon="spinner" pulse style={{ color: 'ghostwhite' }} size="2x" />
+          <Loading />
         ) : (
           <React.Fragment>
             <QuoteBox />

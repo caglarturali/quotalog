@@ -24,6 +24,20 @@ const QuoteDisplay = posed.div({
   }
 });
 
+const AuthorDisplay = posed.div({
+  enter: {
+    y: 0,
+    delay: 250,
+    opacity: 1,
+    transition: { duration: 500 }
+  },
+  exit: {
+    y: 50,
+    opacity: 0,
+    transition: { duration: 150 }
+  }
+});
+
 class QuoteBox extends Component {
   state = {
     isVisible: false
@@ -67,7 +81,7 @@ class QuoteBox extends Component {
     return (
       <div id="quote-box" style={colorStyles}>
         <PoseGroup>
-          {isVisible && (
+          {isVisible && [
             <QuoteDisplay key="quote-display">
               <div>
                 <FontAwesomeIcon icon="quote-left" size="lg" />
@@ -76,9 +90,11 @@ class QuoteBox extends Component {
               <div>
                 <FontAwesomeIcon icon="quote-right" size="lg" />
               </div>
+            </QuoteDisplay>,
+            <AuthorDisplay key="author-display">
               <span id="author">{author}</span>
-            </QuoteDisplay>
-          )}
+            </AuthorDisplay>
+          ]}
         </PoseGroup>
         {!isVisible && <Loading key="loading" color={randomColor} />}
         <div className="buttons" style={buttonBoxStyle}>
